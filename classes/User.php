@@ -72,7 +72,7 @@ class User
     {
         if(empty($email)){
             throw new Exception("Gelieve een e-mailadres in te vullen.");
-        }elseif(strpos($email, '@student.thomasmore.be') == false){
+        }elseif (strpos($email, '@student.thomasmore.be') == false){
             throw new Exception("Gelieve een Thomas More studentenmail te gebruiken.");
         }else{
             $this->email = $email;
@@ -99,7 +99,10 @@ class User
     {
         if(empty($password)){
             throw new Exception("Gelieve een wachtwoord in te vullen.");
-        }else{
+        }elseif(strlen($password) < 5){
+            throw new Exception("Gelieve meer dan 5 karakters te gebruiken.");
+        }
+        else{
             $this->password = $password;
 
             return $this;

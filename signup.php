@@ -4,23 +4,29 @@ include_once(__DIR__ . "/classes/User.php");
 //nieuwe gebruiker aanmaken
 // als $_POST niet leeg is
 if (!empty($_POST)) {
-    try{
+    try {
+        //nieuwe user via class User()
         $user = new User();
+        //set alle variabelen 
         $user->setFirstname($_POST['firstname']);
         $user->setLastname($_POST['lastname']);
-        $user->setEmail($_POST['password']);
+        $user->setEmail($_POST['email']);
         $user->setPassword($_POST['password']);
-    }catch(\Throwable $th){
+
+        //save nieuwe gebruiker
+        
+    } catch (\Throwable $th) {
+        //loopt er iets fout -> error message
         $error = $th->getMessage();
     }
 }
 
 
-//nieuwe user via class User()
-//set alle variabelen 
-//save nieuwe gebruiker
 
-//loopt er iets fout -> error message
+
+
+
+
 
 
 ?>
@@ -37,6 +43,15 @@ if (!empty($_POST)) {
 </head>
 
 <body>
+    <div class="contain">
+        <?php if (isset($error)) : ?>
+            <div class="alert alert-danger" role="alert">
+                <p>
+                    <?php echo $error ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
 
     <div class="container">
         <h2>Maak een nieuw account aan</h2>
