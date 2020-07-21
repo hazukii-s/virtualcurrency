@@ -97,8 +97,13 @@ class User
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        if(empty($password)){
+            throw new Exception("Gelieve een wachtwoord in te vullen.");
+        }else{
+            $this->password = $password;
 
-        return $this;
+            return $this;
+        }
+    
     }
 }
