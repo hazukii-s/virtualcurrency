@@ -70,9 +70,16 @@ class User
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        if(empty($email)){
+            throw new Exception("Gelieve een e-mailadres in te vullen.");
+        }elseif(strpos($email, '@student.thomasmore.be') == false){
+            throw new Exception("Gelieve een Thomas More studentenmail te gebruiken.");
+        }else{
+            $this->email = $email;
 
-        return $this;
+            return $this;
+        }
+      
     }
 
     /**
