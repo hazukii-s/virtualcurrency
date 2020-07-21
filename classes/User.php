@@ -103,6 +103,7 @@ class User
             throw new Exception("Gelieve meer dan 5 karakters te gebruiken.");
         }
         else{
+            $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 13]);
             $this->password = $password;
 
             return $this;

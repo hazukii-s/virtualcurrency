@@ -14,20 +14,12 @@ if (!empty($_POST)) {
         $user->setPassword($_POST['password']);
 
         //save nieuwe gebruiker
-        
+
     } catch (\Throwable $th) {
         //loopt er iets fout -> error message
         $error = $th->getMessage();
     }
 }
-
-
-
-
-
-
-
-
 
 ?>
 
