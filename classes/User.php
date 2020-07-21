@@ -21,9 +21,13 @@
          */ 
         public function setFirstname($firstname)
         {
-                $this->firstname = $firstname;
+                if (empty($firstname)) {
+                    throw new Exception("Gelieve een achternaam in te vullen.");
+            } else {
+                    $this->firstname = $firstname;
 
-                return $this;
+                    return $this;
+            }
         }
 
         /**
