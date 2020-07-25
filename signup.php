@@ -14,6 +14,7 @@ if (!empty($_POST)) {
         $user->setPassword($_POST['password']);
 
         //save nieuwe gebruiker
+        $user->save();
 
     } catch (\Throwable $th) {
         //loopt er iets fout -> error message

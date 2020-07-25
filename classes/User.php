@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__ . "/Db.php");
 
 class User
 {
@@ -70,16 +71,15 @@ class User
      */
     public function setEmail($email)
     {
-        if(empty($email)){
+        if (empty($email)) {
             throw new Exception("Gelieve een e-mailadres in te vullen.");
-        }elseif (strpos($email, '@student.thomasmore.be') == false){
+        } elseif (strpos($email, '@student.thomasmore.be') == false) {
             throw new Exception("Gelieve een Thomas More studentenmail te gebruiken.");
-        }else{
+        } else {
             $this->email = $email;
 
             return $this;
         }
-      
     }
 
     /**
@@ -97,17 +97,46 @@ class User
      */
     public function setPassword($password)
     {
-        if(empty($password)){
+        if (empty($password)) {
             throw new Exception("Gelieve een wachtwoord in te vullen.");
-        }elseif(strlen($password) < 5){
+        } elseif (strlen($password) < 5) {
             throw new Exception("Gelieve meer dan 5 karakters te gebruiken.");
-        }
-        else{
+        } else {
             $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 13]);
             $this->password = $password;
 
+            //var_dump($password);
+            //echo "hashed";
+
             return $this;
         }
-    
+    }
+
+    public function save()
+    {
+        //set connection PDO
+        $conn = Db::getConnection();
+
+        //prepare statement voor de databank
+        $statement = $conn->prepare("insert into users(firstname, lastname, email, password) values (:firstname, :lastname, :email, :password)");
+
+        //bind values = sql injection
+        $firstname = $this->getFirstname();
+        $lastname = $this->getLastname();
+        $email = $this->getEmail();
+        $password = $this->getPassword();
+
+        $statement->bindValue(':firstname', $firstname);
+        $statement->bindValue(':lastname', $lastname);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':password', $password);
+
+        //execute statement
+        $result = $statement->execute();
+
+        //redirect to homepage
+        
+        //return result = saved
+        return $result;
     }
 }
