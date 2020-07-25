@@ -145,7 +145,7 @@ class User
         $conn = Db::getConnection();
         //get values from form 
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $passwordLogin = $_POST['password'];
         //echo $email;
 
         //prepare statement
@@ -160,7 +160,21 @@ class User
         if($user === false){
             throw new Exception("Email en/of wachtwoord is incorrect.");
         } else{
+            //user gevonden -> wachtwoord checken
+            //echo "user found";
+            $passwordCheck = password_verify($passwordLogin, $user['password'] );
+            var_dump($user['password']);
+            var_dump($passwordCheck);
 
+            if($passwordCheck){
+                //stel login session vast 
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['logged_in'] = time();
+                //redirect naar index.php
+                header('Location: index.php');
+            } else{
+                throw new Exception("Email en/of wachtwoord is incorrect.");
+            }
         }
 
     }

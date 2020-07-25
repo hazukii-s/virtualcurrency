@@ -59,7 +59,7 @@ if (!empty($_POST)) {
                 <input name="password" type="password" class="form-control" placeholder="Wachtwoord">
             </div>
 
-            <input type="submit" class="btn btn-primary">
+            <input type="submit" class="btn btn-primary" value="Log in">
         </form>
     </div>
 
