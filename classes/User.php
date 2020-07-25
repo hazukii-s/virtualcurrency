@@ -139,4 +139,29 @@ class User
         //return result = saved
         return $result;
     }
+
+    public function login(){
+        //set connection 
+        $conn = Db::getConnection();
+        //get values from form 
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        //echo $email;
+
+        //prepare statement
+        $statement = $conn->prepare("select id, email, password from users where email = :email ");
+        $statement->bindValue(':email', $email);
+        //execute statement
+        $statement->execute();
+        //fetch row to check with database
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        //geen row te vinden? -> geen bestaande user
+        if($user === false){
+            throw new Exception("Email en/of wachtwoord is incorrect.");
+        } else{
+
+        }
+
+    }
 }
