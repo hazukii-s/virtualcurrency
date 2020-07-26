@@ -118,7 +118,7 @@ class User
         $conn = Db::getConnection();
 
         //prepare statement voor de databank
-        $statement = $conn->prepare("insert into users(firstname, lastname, email, password) values (:firstname, :lastname, :email, :password)");
+        $statement = $conn->prepare("insert into users(firstname, lastname, email, password, tokens) values (:firstname, :lastname, :email, :password, 10)");
 
         //bind values = sql injection
         $firstname = $this->getFirstname();
