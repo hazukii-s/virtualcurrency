@@ -16,18 +16,16 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     <title>Welkom</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
-        row{
+        row {
             margin: 2em;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <h1>Welcome! You are now logged in.</h1>
-        </div>
-        <div class="row">
+    <div class="container mx-auto">
+        <div class="container w-50 mt-5">
+            <h3>Welkom.</h3>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Huidig saldo:</h5>
@@ -35,9 +33,9 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
                 </div>
             </div>
         </div>
-        <div class="row">
 
-            <ul class="list-group">
+        <div class="container w-50">
+            <ul class="list-group mt-3">
                 <h5>Transfers</h5>
                 <li class="list-group-item">[naam] [transfer]</li>
                 <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -46,7 +44,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
                 <li class="list-group-item">Vestibulum at eros</li>
             </ul>
         </div>
-        <div class="row">
+        <div class="container w-50 mt-3">
             <input type="submit" class="btn btn-primary" value="Maak transfer">
         </div>
     </div>
