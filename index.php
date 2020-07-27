@@ -25,7 +25,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
 <body>
     <div class="container mx-auto">
         <div class="container w-50 mt-5">
-            <h3>Welkom.</h3>
+        <a class="btn btn-outline-secondary float-right" href="../virtualcurrency/logout.php" role="button">Uitloggen</a>
+            <h3 class=" mb-5 ">Welkom.</h3>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Huidig saldo:</h5>
