@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
             </ul>
         </div>
         <div class="container w-50 mt-3">
-            <input type="submit" class="btn btn-primary" value="Maak transfer">
+            <a class="btn btn-primary" href="../virtualcurrency/transfer.php" role="button">Maak transfer</a>
         </div>
     </div>
 </body>
