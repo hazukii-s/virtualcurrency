@@ -16,10 +16,12 @@
 </head>
 
 <body>
-    <div class="container">
-        <h5>Maak een transfer</h5>
+    <div class="container w-50 mt-5">
+        <a class="btn btn-outline-secondary mb-4" href="../virtualcurrency/index.php" role="button">Terug</a>
+
+        <h3>Maak een transfer</h3>
         <form action="">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 mt-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
@@ -39,7 +41,7 @@
                 </div>
                 <textarea class="form-control" aria-label="With textarea"></textarea>
             </div>
-            <div class="mt-2">
+            <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Verzenden</button>
             </div>
         </form>
