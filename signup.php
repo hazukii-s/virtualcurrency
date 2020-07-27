@@ -36,7 +36,7 @@ if (!empty($_POST)) {
 </head>
 
 <body>
-    <div class="contain">
+    <div class="containerw-50">
         <?php if (isset($error)) : ?>
             <div class="alert alert-danger" role="alert">
                 <p>
@@ -46,8 +46,9 @@ if (!empty($_POST)) {
         <?php endif; ?>
     </div>
 
-    <div class="container">
-        <h2>Maak een nieuw account aan</h2>
+    <div class="container w-25 mt-5">
+        <h6>IMD currency</h6>
+        <h4 class="mb-4">Maak een nieuw account aan</h4>
         <form method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Voornaam</label>
@@ -66,7 +67,7 @@ if (!empty($_POST)) {
                 <input name="password" type="password" class="form-control" placeholder="Wachtwoord">
             </div>
 
-            <input type="submit" class="btn btn-primary">
+            <input type="submit" class="btn btn-primary" value="Aanmelden">
         </form>
     </div>
 
