@@ -48,8 +48,8 @@ if (!empty($_POST)) {
     </div>
 
     <div class="container w-25 mt-5 mx-auto">
-        <h2>Log in</h2>
         <h4>IMD currency</h4>
+        <h2 class="mb-4">Log in</h2>
         <form method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">E-mailadres</label>
@@ -60,7 +60,7 @@ if (!empty($_POST)) {
                 <input name="password" type="password" class="form-control" placeholder="Wachtwoord">
             </div>
 
-            <input type="submit" class="btn btn-primary" value="Log in">
+            <input type="submit" class="btn btn-primary mt-3" value="Log in">
         </form>
     </div>
 
