@@ -37,7 +37,7 @@ if (!empty($_POST)) {
 </head>
 
 <body>
-    <div class="contain">
+    <div class="container w-50">
         <?php if (isset($error)) : ?>
             <div class="alert alert-danger" role="alert">
                 <p>
@@ -47,8 +47,9 @@ if (!empty($_POST)) {
         <?php endif; ?>
     </div>
 
-    <div class="container">
-        <h2>IMD currency </h2>
+    <div class="container w-25 mt-5 mx-auto">
+        <h2>Log in</h2>
+        <h4>IMD currency</h4>
         <form method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">E-mailadres</label>
