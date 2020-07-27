@@ -134,8 +134,6 @@ class User
         //execute statement
         $result = $statement->execute();
 
-        //redirect to homepage
-        header('Location: index.php');
         //return result = saved
         return $result;
     }
