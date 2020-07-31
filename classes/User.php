@@ -113,26 +113,6 @@ class User
         }
     }
 
-     /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     public function save()
     {
         //set connection PDO
@@ -196,18 +176,6 @@ class User
             }
         }
 
-    }
-
-    public function getAvailableTokens(){
-        $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT tokens from users where id = :userid");
-        $userid = $this->getId();
-        $statement->bindValue('userid', $userid);
-        $statement->execute();
-
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        //var_dump($result);
-        return $result;
     }
 
    

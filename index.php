@@ -2,6 +2,7 @@
 session_start();
 
 include_once(__DIR__ . "/classes/User.php");
+include_once(__DIR__ . "/classes/Transfer.php");
 
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     //gebruiker niet ingelogd? -> redirect naar login pagina
@@ -9,9 +10,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
 }
 
 $user = new User();
-$user->setId($_SESSION['user_id']);
+$tokens = new Transfer();
+$tokens->setId($_SESSION['user_id']);
 //echo $_SESSION['user_id'];
-$availableTokens = $user->getAvailableTokens();
+$availableTokens = $tokens->getAvailableTokens();
 ?>
 
 <!DOCTYPE html>
