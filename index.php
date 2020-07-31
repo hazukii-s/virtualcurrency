@@ -8,10 +8,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     header('Location: login.php');
 }
 
-    $user = new User();
-    $user->setId($_SESSION['user_id']);
-    echo $_SESSION['user_id'];
-    $availableTokens = $user->getAvailableTokens();
+$user = new User();
+$user->setId($_SESSION['user_id']);
+echo $_SESSION['user_id'];
+$availableTokens = $user->getAvailableTokens();
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +27,13 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
             margin: 2em;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="container mx-auto">
+    <div class="container mx-auto" id="saldo">
         <div class="container w-50 mt-5">
-        <a class="btn btn-outline-secondary float-right" href="../virtualcurrency/logout.php" role="button">Uitloggen</a>
+            <a class="btn btn-outline-secondary float-right" href="../virtualcurrency/logout.php" role="button">Uitloggen</a>
             <h3 class=" mb-5 ">Welkom.</h3>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -57,5 +58,18 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
         </div>
     </div>
 </body>
-<script src="/pageReload.js"></script>
+
+<script>
+    //page refresh voor huidig saldo te kunnen zien
+    $(document).ready(function() {
+        setInterval(reload, 10000);
+
+        function reload() {
+            $('#saldo').load('index.php #saldo', function() {
+                console.log("reloadddd");
+            });
+        }
+    });
+</script>
+
 </html>
