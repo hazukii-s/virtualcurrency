@@ -198,5 +198,17 @@ class User
 
     }
 
+    public function getAvailableTokens(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT tokens from users where id = :userid");
+        $userid = $this->getId();
+        $statement->bindValue('userid', $userid);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        //var_dump($result);
+        return $result;
+    }
+
    
 }

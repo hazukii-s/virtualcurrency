@@ -11,6 +11,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     $user = new User();
     $user->setId($_SESSION['user_id']);
     echo $_SESSION['user_id'];
+    $user->getAvailableTokens();
 ?>
 
 <!DOCTYPE html>
