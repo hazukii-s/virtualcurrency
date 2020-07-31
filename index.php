@@ -1,10 +1,16 @@
 <?php
 session_start();
+
+include_once(__DIR__ . "/classes/User.php");
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     //gebruiker niet ingelogd? -> redirect naar login pagina
     header('Location: login.php');
 }
 
+    $user = new User();
+    $user->setId($_SESSION['user_id']);
+    echo $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
