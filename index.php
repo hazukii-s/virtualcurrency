@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     $user = new User();
     $user->setId($_SESSION['user_id']);
     echo $_SESSION['user_id'];
-    $user->getAvailableTokens();
+    $availableTokens = $user->getAvailableTokens();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Huidig saldo:</h5>
-                    <p class="card-text">10 tokens</p>
+                    <p class="card-text"> <?php echo $availableTokens['tokens']; ?> tokens</p>
                 </div>
             </div>
         </div>
@@ -57,5 +57,5 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
         </div>
     </div>
 </body>
-
+<script src="/pageReload.js"></script>
 </html>
