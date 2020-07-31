@@ -1,12 +1,14 @@
 <?php
 include_once(__DIR__ . "/classes/Transfer.php");
+include_once(__DIR__ . "/classes/User.php");
 
 
 if (!empty($_POST)) {
     try {
         $transfer = new Transfer();
-        $user = new USer();
+        $user = new User();
         $transfer->setAmount($_POST['amount']);
+        $transfer->getAvailableTokens();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
@@ -42,7 +44,8 @@ if (!empty($_POST)) {
         <a class="btn btn-outline-secondary mb-4" href="../virtualcurrency/index.php" role="button">Terug</a>
 
         <h3>Maak een transfer</h3>
-        <form action="">
+        <form method="POST">
+
             <div class="input-group mb-3 mt-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">@</span>
@@ -54,7 +57,7 @@ if (!empty($_POST)) {
                 <div class="input-group-prepend">
                     <span class="input-group-text">€</span>
                 </div>
-                <input name="amount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input name="amount" type="text" class="form-control">
             </div>
 
             <div class="input-group">
@@ -63,9 +66,11 @@ if (!empty($_POST)) {
                 </div>
                 <textarea name="transferMsg" class="form-control" aria-label="With textarea"></textarea>
             </div>
+
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Verzenden</button>
             </div>
+
         </form>
     </div>
 </body>
