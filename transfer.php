@@ -1,4 +1,16 @@
 <?php
+include_once(__DIR__ . "/classes/Transfer.php");
+
+
+if (!empty($_POST)) {
+    try {
+        $transfer = new Transfer();
+        $user = new USer();
+        $transfer->setAmount($_POST['amount']);
+    } catch (\Throwable $th) {
+        $error = $th->getMessage();
+    }
+}
 
 
 
@@ -16,6 +28,16 @@
 </head>
 
 <body>
+    <div class="container w-50">
+        <?php if (isset($error)) : ?>
+            <div class="alert alert-danger" role="alert">
+                <p>
+                    <?php echo $error ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
+
     <div class="container w-50 mt-5">
         <a class="btn btn-outline-secondary mb-4" href="../virtualcurrency/index.php" role="button">Terug</a>
 
@@ -25,21 +47,21 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                <input name="username" type="text" class="form-control" id="searchUsername" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">€</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input name="amount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
             </div>
 
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Bericht</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <textarea name="transferMsg" class="form-control" aria-label="With textarea"></textarea>
             </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Verzenden</button>
