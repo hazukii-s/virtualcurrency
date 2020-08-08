@@ -12,15 +12,14 @@ if (!empty($_POST)) {
         $transfer->setAmount($_POST['amount']);
         $transfer->getMessage($_POST['transferMsg']);
         $transfer->setId($_SESSION['user_id']);
-        $tokens = $transfer->getAvailableTokens();
-        var_dump($tokens['tokens']);
         $transfer->userSuggestion();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
 
-
+$tokens = Transfer::getAvailableTokens();
+var_dump($tokens['tokens']);
 
 
 ?>
@@ -63,7 +62,7 @@ if (!empty($_POST)) {
                 <div class="input-group-prepend">
                     <span class="input-group-text">€</span>
                 </div>
-                <input name="amount" type="number" min="1" max="500" class="form-control">
+                <input name="amount" type="number" min="1" max="<?php echo $tokens['tokens'] ?>" class="form-control">
             </div>
 
             <div class="input-group">
