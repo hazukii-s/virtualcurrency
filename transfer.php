@@ -8,9 +8,9 @@ if (!empty($_POST)) {
     try {
         $transfer = new Transfer();
         $user = new User();
-        $transfer->getUser($_POST['username']);
+        $transfer->setUser($_POST['username']);
         $transfer->setAmount($_POST['amount']);
-        $transfer->getMessage($_POST['transferMsg']);
+        $transfer->setMessage($_POST['transferMsg']);
         $transfer->setId($_SESSION['user_id']);
         $transfer->userSuggestion();
     } catch (\Throwable $th) {
