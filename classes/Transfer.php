@@ -24,9 +24,13 @@
                  */
                 public function setUser($user)
                 {
-                        $this->user = $user;
+                        if (empty($user)) {
+                                throw new Exception("Gelieve een naam in te vullen.");
+                        } else {
+                                $this->user = $user;
 
-                        return $this;
+                                return $this;
+                        }
                 }
 
                 /**
@@ -70,9 +74,13 @@
                  */
                 public function setMessage($message)
                 {
-                        $this->message = $message;
+                        if (empty($message)) {
+                                throw new Exception("Gelieve een reden voor overdracht te geven.");
+                        } else {
+                                $this->message = $message;
 
-                        return $this;
+                                return $this;
+                        }
                 }
 
 
@@ -117,6 +125,7 @@
                         $statement->bindValue('firstname', $firstname);
                         $statement->execute();
                         $result = $statement->fetch(PDO::FETCH_ASSOC);
-                        var_dump($firstname) ;
+                        return $result;
+                        var_dump($result);
                 }
         }
