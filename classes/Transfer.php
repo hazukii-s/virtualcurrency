@@ -104,16 +104,17 @@
                         return $this;
                 }
 
-                public function getAvailableTokens()
+                public static function getAvailableTokens()
                 {
                         $conn = Db::getConnection();
                         $statement = $conn->prepare("SELECT tokens from users where id = :userid");
-                        $userid = $this->getId();
+                        $userid = $_SESSION['user_id'];
+                        var_dump($userid);
                         $statement->bindValue('userid', $userid);
                         $statement->execute();
 
                         $result = $statement->fetch(PDO::FETCH_ASSOC);
-                        //var_dump($result);
+                        var_dump($result);
                         return $result;
                 }
 
