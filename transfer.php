@@ -10,16 +10,17 @@ if (!empty($_POST)) {
         $user = new User();
         $transfer->setUser($_POST['username']);
         $transfer->setAmount($_POST['amount']);
-        $transfer->setMessage($_POST['transferMsg']);
+        $transfer->setTransferMessage($_POST['transferMsg']);
         $transfer->setId($_SESSION['user_id']);
         $transfer->userSuggestion();
+        $transfer->completeTransfer();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
 }
 
 $tokens = Transfer::getAvailableTokens();
-var_dump($tokens['tokens']);
+//var_dump($tokens['tokens']);
 
 
 ?>
@@ -79,5 +80,13 @@ var_dump($tokens['tokens']);
         </form>
     </div>
 </body>
+
+<script>
+    $(document).ready(function(){
+        $("#searchUser").autocomplete({
+            source: 'userSuggestion.php'
+        });
+    });
+</script>
 
 </html>

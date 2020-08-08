@@ -5,7 +5,7 @@
         {
                 private $user;
                 private $amount;
-                private $message;
+                private $transferMessage;
                 private $id;
 
 
@@ -62,7 +62,7 @@
                 /**
                  * Get the value of message
                  */
-                public function getMessage()
+                public function getTransferMessage()
                 {
                         return $this->message;
                 }
@@ -72,12 +72,12 @@
                  *
                  * @return  self
                  */
-                public function setMessage($message)
+                public function setTransferMessage($transferMessage)
                 {
-                        if (empty($message)) {
+                        if (empty($transferMessage)) {
                                 throw new Exception("Gelieve een reden voor overdracht te geven.");
                         } else {
-                                $this->message = $message;
+                                $this->message = $transferMessage;
 
                                 return $this;
                         }
@@ -109,25 +109,50 @@
                         $conn = Db::getConnection();
                         $statement = $conn->prepare("SELECT tokens from users where id = :userid");
                         $userid = $_SESSION['user_id'];
-                        var_dump($userid);
+                       // var_dump($userid);
                         $statement->bindValue('userid', $userid);
                         $statement->execute();
 
                         $result = $statement->fetch(PDO::FETCH_ASSOC);
-                        var_dump($result);
+                        //var_dump($result);
                         return $result;
                 }
 
                 public function userSuggestion()
                 {
                         $conn = Db::getConnection();
-                        $statement = $conn->prepare("SELECT firstname, lastname FROM users WHERE firstname LIKE :firstname ");
+                        $statement = $conn->prepare("SELECT * FROM users WHERE firstname LIKE :firstname ");
                         $username = $this->getUser();
                         $statement->bindValue(':firstname', $username);
                         $statement->execute();
                         $result = $statement->fetch(PDO::FETCH_ASSOC);
-                        var_dump($result);
-                        return $result;
+                        //var_dump($result);
+
+                        if ($result === false) {
+                                throw new Exception("Deze gebruiker bestaat niet.");
+                        } else {
+                                throw new Exception("DEZE GEBRUIKER BESTAAT");
+                        }
+                }
+
+                public function completeTransfer(){
+                        $conn = Db::getConnection();
+                        $statement = $conn->prepare("UPDATE users SET tokens = tokens + :tokens WHERE firstname = :firstname; INSERT INTO transfer(users_id, tokens, description) values(:users_id, :tokens, :description); UPDATE users SET tokens = tokens - :tokens WHERE id = :users_id;");
                         
+                        $firstname = $this->getUser();
+                        $users_id = $this->$_SESSION['user_id'];
+                        $tokens = $this->getAmount();
+                        $description = $this->getTransferMessage();
+
+                        $statement->bindValue(':tokens', $tokens);
+                        $statement->bindValue(':firstname', $firstname);
+                        $statement->bindValue(':users_id', $users_id);
+                        $statement->bindValue(':description', $description);
+
+                        $result = $statement->execute();
+
+                        return $result;
+
+
                 }
         }
