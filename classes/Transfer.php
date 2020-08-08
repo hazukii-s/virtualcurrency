@@ -122,11 +122,12 @@
                 {
                         $conn = Db::getConnection();
                         $statement = $conn->prepare("SELECT firstname, lastname FROM users WHERE firstname LIKE :firstname ");
-                        $firstname = $this->getUser();
-                        $statement->bindValue('firstname', $firstname);
+                        $username = $this->getUser();
+                        $statement->bindValue(':firstname', $username);
                         $statement->execute();
                         $result = $statement->fetch(PDO::FETCH_ASSOC);
-                        return $result;
                         var_dump($result);
+                        return $result;
+                        
                 }
         }
