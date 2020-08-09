@@ -13,6 +13,7 @@ if (!empty($_POST)) {
         $transfer->setTransferMessage($_POST['transferMsg']);
         $transfer->setId($_SESSION['user_id']);
         $transfer->completeTransfer();
+        $success = "Overdracht is voltooid.";
     } catch (\Throwable $th) {
         $error = $th->getMessage();
     }
@@ -40,6 +41,16 @@ $tokens = Transfer::getAvailableTokens();
             <div class="alert alert-danger" role="alert">
                 <p>
                     <?php echo $error ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="container w-50">
+        <?php if (isset($success)) : ?>
+            <div class="alert alert-success" role="alert">
+                <p>
+                    <?php echo $success ?>
                 </p>
             </div>
         <?php endif; ?>
