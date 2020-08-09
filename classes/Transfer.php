@@ -178,7 +178,7 @@
                         return $result3;
                 }
 
-                public static function getAllTransfers()
+                public static function getIncomingTransfers()
                 {
                         //laat alle transfers zien zowel uitgaande als binnengekomen
                         $conn = Db::getConnection();
@@ -201,9 +201,31 @@
                         //var_dump($message);
                         return $result;
 
-                        // laat zien waar senderid = session['user_id']
+
+
                         //loop over array
                         //if senderid 'jij hebt [tokens] gestuurd naar [firstname]'
                         //if receiver id '[firstname] heeft [tokens] gestuurd naar jou'
+                }
+
+                public static function getOutgoingTransfers(){
+                        
+                        // laat zien waar senderid = session['user_id']
+                        $conn = Db::getConnection();
+
+                        $statement2 = $conn->prepare("SELECT users.firstname, users.lastname, transfers.tokens, transfers.description
+                        FROM transfers 
+                        JOIN users ON transfers.receiverid = users.id
+                        WHERE senderid = :senderid");
+
+                        $senderid = $_SESSION['user_id'];
+
+                        $statement2->bindValue(':senderid', $senderid);
+
+                        $statement2->execute();
+
+                        $result2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
+
+                        return $result2;
                 }
         }
