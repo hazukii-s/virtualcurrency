@@ -137,22 +137,43 @@
 
                 public function completeTransfer(){
                         $conn = Db::getConnection();
-                        $statement = $conn->prepare("UPDATE users SET tokens = tokens + :tokens WHERE firstname = :firstname; INSERT INTO transfer(users_id, tokens, description) values(:users_id, :tokens, :description); UPDATE users SET tokens = tokens - :tokens WHERE id = :users_id;");
-                        
+                        $stmt = $conn->prepare("SELECT id FROM users WHERE firstname = :firstname");
+
                         $firstname = $this->getUser();
-                        $users_id = $this->$_SESSION['user_id'];
+
+                        $stmt->bindValue(':firstname', $firstname);
+                        $stmt->execute();
+                        $receiverid = $stmt->fetch(PDO::FETCH_ASSOC);
+                        var_dump($stmt);
+                        var_dump($receiverid);
+
+                        $statement1 = $conn->prepare("UPDATE users SET tokens = tokens + :tokens WHERE firstname = :firstname");
+                        $statement2 = $conn->prepare("INSERT INTO transfers (senderid, receiverid, tokens, description) values(:senderid, :receiverid, :tokens, :description)");
+                        $statement3 = $conn->prepare("UPDATE users SET tokens = tokens - :tokens WHERE id = :senderid;");
+
+                        $senderid = $_SESSION['user_id'];
                         $tokens = $this->getAmount();
                         $description = $this->getTransferMessage();
 
-                        $statement->bindValue(':tokens', $tokens);
-                        $statement->bindValue(':firstname', $firstname);
-                        $statement->bindValue(':users_id', $users_id);
-                        $statement->bindValue(':description', $description);
+                        $statement1->bindValue(':tokens', $tokens);
+                        $statement1->bindValue(':firstname', $firstname);
 
-                        $result = $statement->execute();
+                        $statement2->bindValue(':senderid', $senderid);
+                        $statement2->bindValue('receiverid', $receiverid['id']);
+                        $statement2->bindValue(':tokens', $tokens);
+                        $statement2->bindValue(':description', $description);
 
-                        return $result;
+                        $statement3->bindValue(':tokens', $tokens);
+                        $statement3->bindValue(':senderid', $senderid);
+
+                        var_dump($statement1);
 
 
+                        $result = $statement1->execute();
+                        $result2 = $statement2->execute();
+                        $result3 = $statement3->execute();
+   
+
+                        return $result3;
                 }
         }

@@ -12,7 +12,6 @@ if (!empty($_POST)) {
         $transfer->setAmount($_POST['amount']);
         $transfer->setTransferMessage($_POST['transferMsg']);
         $transfer->setId($_SESSION['user_id']);
-        $transfer->userSuggestion();
         $transfer->completeTransfer();
     } catch (\Throwable $th) {
         $error = $th->getMessage();
