@@ -179,7 +179,19 @@
 
                 public static function getAllTransfers(){
                         //laat alle transfers zien zowel uitgaande als binnengekomen
+                        $conn = Db::getConnection();
                         // laat zien waar senderid = session['user_id']
+                        $statement = $conn->prepare("SELECT description FROM transfers WHERE receiverid = :receiverid");
+
+                        $receiverid = $_SESSION['user_id'];
+                        //var_dump($receiverid);
+
+                        $statement->bindValue(':receiverid', $receiverid);
+                        $statement->execute();
+
+                        $message = $statement->fetchAll(PDO::FETCH_ASSOC);
+                        //var_dump($message);
+                        return $message;
                         //laat zien waar receiverid = session['user_id']
                         //loop over array
                         //if senderid 'jij hebt [tokens] gestuurd naar [firstname]'

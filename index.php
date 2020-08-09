@@ -14,6 +14,10 @@ $tokens = new Transfer();
 $tokens->setId($_SESSION['user_id']);
 //echo $_SESSION['user_id'];
 $availableTokens = $tokens->getAvailableTokens();
+$allTransfers = Transfer::getAllTransfers();
+//var_dump($allTransfers);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +52,13 @@ $availableTokens = $tokens->getAvailableTokens();
         <div class="container w-50">
             <ul class="list-group mt-3">
                 <h5>Transfers</h5>
-                <li class="list-group-item">[naam] [transfer]</li>
+
+                <?php foreach($allTransfers as $message) : ?>
+
+                <li class="list-group-item"><?php echo $message['description'];  ?></li>
+
+                <?php endforeach; ?>
+                
                 <li class="list-group-item">Dapibus ac facilisis in</li>
                 <li class="list-group-item">Morbi leo risus</li>
                 <li class="list-group-item">Porta ac consectetur ac</li>
