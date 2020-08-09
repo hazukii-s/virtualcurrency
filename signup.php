@@ -15,6 +15,7 @@ if (!empty($_POST)) {
 
         //save nieuwe gebruiker
         $user->save();
+        $succes = "Account is aangemaakt! Gelieve in te loggen.";
 
     } catch (\Throwable $th) {
         //loopt er iets fout -> error message
@@ -41,6 +42,16 @@ if (!empty($_POST)) {
             <div class="alert alert-danger" role="alert">
                 <p>
                     <?php echo $error ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="containerw-50">
+        <?php if (isset($success)) : ?>
+            <div class="alert alert-success" role="alert">
+                <p>
+                    <?php echo $success ?>
                 </p>
             </div>
         <?php endif; ?>

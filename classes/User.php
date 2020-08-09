@@ -148,7 +148,7 @@ class User
         //echo $email;
 
         //prepare statement
-        $statement = $conn->prepare("select id, email, password from users where email = :email ");
+        $statement = $conn->prepare("select id, firstname, email, password from users where email = :email ");
         $statement->bindValue(':email', $email);
         //execute statement
         $statement->execute();
@@ -168,6 +168,7 @@ class User
             if($passwordCheck){
                 //stel login session vast 
                 $_SESSION['user_id'] = $user['id'];
+                $_SESSION['firstname'] = $user['firstname'];
                 $_SESSION['logged_in'] = time();
                 //redirect naar index.php
                 header('Location: index.php');
