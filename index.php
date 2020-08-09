@@ -9,12 +9,13 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     header('Location: login.php');
 }
 
-$user = new User();
+
 $tokens = new Transfer();
 $tokens->setId($_SESSION['user_id']);
 echo $_SESSION['user_id'];
 $availableTokens = $tokens->getAvailableTokens();
-$allTransfers = Transfer::getAllTransfers();
+$incomingTransfers = Transfer::getIncomingTransfers();
+$outgoingTransfers = Transfer::getOutgoingTransfers();
 //var_dump($allTransfers);
 
 
@@ -53,9 +54,15 @@ $allTransfers = Transfer::getAllTransfers();
             <ul class="list-group mt-3">
                 <h5>Transfers</h5>
 
-                <?php foreach($allTransfers as $transfer) : ?>
+                <?php foreach ($incomingTransfers as $transfer) : ?>
 
-                <li class="list-group-item"> <?php echo $transfer['firstname'];?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
+                    <li class="list-group-item"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
+
+                <?php endforeach; ?>
+
+                <?php foreach ($outgoingTransfers as $transfer) : ?>
+
+                    <li class="list-group-item"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
 
                 <?php endforeach; ?>
             </ul>
