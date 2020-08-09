@@ -41,7 +41,7 @@ $outgoingTransfers = Transfer::getOutgoingTransfers();
     <div class="container mx-auto" id="saldo">
         <div class="container w-50 mt-5">
             <a class="btn btn-outline-secondary float-right" href="../virtualcurrency/logout.php" role="button">Uitloggen</a>
-            <h3 class=" mb-5 ">Welkom.</h3>
+            <h3 class=" mb-5 ">Welkom, <?php echo $_SESSION['firstname']; ?>.</h3>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Huidig saldo:</h5>
