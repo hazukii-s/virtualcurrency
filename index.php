@@ -62,7 +62,7 @@ $outgoingTransfers = Transfer::getOutgoingTransfers();
 
                 <?php foreach ($outgoingTransfers as $transfer) : ?>
 
-                    <li class="list-group-item"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
+                    <li class="list-group-item"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
 
                 <?php endforeach; ?>
             </ul>
