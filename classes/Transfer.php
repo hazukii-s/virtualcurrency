@@ -176,4 +176,13 @@
 
                         return $result3;
                 }
+
+                public static function getAllTransfers(){
+                        //laat alle transfers zien zowel uitgaande als binnengekomen
+                        // laat zien waar senderid = session['user_id']
+                        //laat zien waar receiverid = session['user_id']
+                        //loop over array
+                        //if senderid 'jij hebt [tokens] gestuurd naar [firstname]'
+                        //if receiver id '[firstname] heeft [tokens] gestuurd naar jou'
+                }
         }
