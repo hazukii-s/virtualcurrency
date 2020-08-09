@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
 $user = new User();
 $tokens = new Transfer();
 $tokens->setId($_SESSION['user_id']);
-//echo $_SESSION['user_id'];
+echo $_SESSION['user_id'];
 $availableTokens = $tokens->getAvailableTokens();
 $allTransfers = Transfer::getAllTransfers();
 //var_dump($allTransfers);
@@ -53,16 +53,11 @@ $allTransfers = Transfer::getAllTransfers();
             <ul class="list-group mt-3">
                 <h5>Transfers</h5>
 
-                <?php foreach($allTransfers as $message) : ?>
+                <?php foreach($allTransfers as $transfer) : ?>
 
-                <li class="list-group-item"><?php echo $message['description'];  ?></li>
+                <li class="list-group-item"> <?php echo $transfer['firstname'];?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
 
                 <?php endforeach; ?>
-                
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
             </ul>
         </div>
         <div class="container w-50 mt-3">

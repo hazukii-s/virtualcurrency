@@ -109,7 +109,7 @@
                         $conn = Db::getConnection();
                         $statement = $conn->prepare("SELECT tokens from users where id = :userid");
                         $userid = $_SESSION['user_id'];
-                       // var_dump($userid);
+                        // var_dump($userid);
                         $statement->bindValue('userid', $userid);
                         $statement->execute();
 
@@ -135,7 +135,8 @@
                         }
                 }
 
-                public function completeTransfer(){
+                public function completeTransfer()
+                {
                         $conn = Db::getConnection();
                         $stmt = $conn->prepare("SELECT id FROM users WHERE firstname = :firstname");
 
@@ -172,27 +173,35 @@
                         $result = $statement1->execute();
                         $result2 = $statement2->execute();
                         $result3 = $statement3->execute();
-   
+
 
                         return $result3;
                 }
 
-                public static function getAllTransfers(){
+                public static function getAllTransfers()
+                {
                         //laat alle transfers zien zowel uitgaande als binnengekomen
                         $conn = Db::getConnection();
-                        // laat zien waar senderid = session['user_id']
-                        $statement = $conn->prepare("SELECT description FROM transfers WHERE receiverid = :receiverid");
+
+                        //laat zien waar receiverid = session['user_id']
+                        $statement = $conn->prepare("SELECT users.firstname, users.lastname, transfers.tokens, transfers.description
+                         FROM transfers 
+                         JOIN users ON transfers.senderid = users.id
+                         WHERE receiverid = :receiverid");
 
                         $receiverid = $_SESSION['user_id'];
                         //var_dump($receiverid);
 
                         $statement->bindValue(':receiverid', $receiverid);
+
                         $statement->execute();
 
-                        $message = $statement->fetchAll(PDO::FETCH_ASSOC);
+                        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
                         //var_dump($message);
-                        return $message;
-                        //laat zien waar receiverid = session['user_id']
+                        return $result;
+
+                        // laat zien waar senderid = session['user_id']
                         //loop over array
                         //if senderid 'jij hebt [tokens] gestuurd naar [firstname]'
                         //if receiver id '[firstname] heeft [tokens] gestuurd naar jou'
