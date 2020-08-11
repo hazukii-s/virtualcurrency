@@ -30,34 +30,64 @@ $transferDetail = Transfer::showTransferDetail();
             <a class="btn btn-outline-secondary float-right" href="index.php" role="button">Terug</a>
             <h3 class=" mb-5 ">Transfer details.</h3>
 
-            <?php if($_SESSION['firstname'] == $transferDetail['senderFN']) : ?>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">U stuurde</h5>
-                    <?php if ($transferDetail['tokens'] > 1) : ?>
-                        <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
-                    <?php else : ?>
-                        <p class="card-text"> <?php echo $transferDetail['tokens']; ?> token</p>
-                    <?php endif; ?>
+            <?php if ($_SESSION['firstname'] == $transferDetail['senderFN']) : ?>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">U stuurde</h5>
+                        <?php if ($transferDetail['tokens'] > 1) : ?>
+                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
+                        <?php else : ?>
+                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> token</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Naar</h5>
-                    <p class="card-text"> <?php echo $transferDetail['receiverFN'];  echo " "; echo $transferDetail['receiverLN']?></p>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Naar</h5>
+                        <p class="card-text"> <?php echo $transferDetail['receiverFN'];
+                                                echo " ";
+                                                echo $transferDetail['receiverLN'] ?></p>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Bericht</h5>
-                    <p class="card-text"> <?php echo $transferDetail['description']; ?></p>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Bericht</h5>
+                        <p class="card-text"> <?php echo $transferDetail['description']; ?></p>
+                    </div>
                 </div>
-            </div>
 
-                    <?php endif; ?>
+                <?php else : ?>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">U kreeg</h5>
+                        <?php if ($transferDetail['tokens'] > 1) : ?>
+                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
+                        <?php else : ?>
+                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> token</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Van</h5>
+                        <p class="card-text"> <?php echo $transferDetail['senderFN'];
+                                                echo " ";
+                                                echo $transferDetail['senderLN'] ?></p>
+
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Bericht</h5>
+                        <p class="card-text"> <?php echo $transferDetail['description']; ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
 
         </div>
 
