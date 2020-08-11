@@ -134,7 +134,8 @@ class User
 
         //execute statement
         $result = $statement->execute();
-
+        
+        header('Location: index.php');
         //return result = saved
         return $result;
     }

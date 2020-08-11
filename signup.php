@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . "/classes/User.php");
+session_start();
 
 //nieuwe gebruiker aanmaken
 // als $_POST niet leeg is
@@ -15,7 +16,6 @@ if (!empty($_POST)) {
 
         //save nieuwe gebruiker
         $user->save();
-        $succes = "Account is aangemaakt! Gelieve in te loggen.";
 
     } catch (\Throwable $th) {
         //loopt er iets fout -> error message
