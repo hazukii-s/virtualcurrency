@@ -241,11 +241,12 @@
 
                         // als het bestaat -> stmt prepare om naam, tokens en bericht te krijgen
                         if (isset($transferId)) {
-                                $statement = $conn->prepare("SELECT u1.firstname, u1.lastname, u2.firstname, u2.lastname, transfers.tokens, transfers.description
-                                FROM transfers 
-                                JOIN users u1 ON transfers.senderid = u1.id
-                                JOIN users u2 ON transfers.receiverid = u2.id
-                                WHERE transfers.id = :id");
+                                $statement = $conn->prepare("SELECT u1.firstname AS senderFN, u1.lastname AS senderLN, 
+                                u2.firstname AS receiverFN, u2.lastname AS receiverLN, transfers.tokens, transfers.description
+                                                                FROM transfers 
+                                                                JOIN users u1 ON transfers.senderid = u1.id
+                                                                JOIN users u2 ON transfers.receiverid = u2.id
+                                                                WHERE transfers.id = :id");
 
                                 $statement->bindValue(':id', $transferId);
 
