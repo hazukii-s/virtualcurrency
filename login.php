@@ -64,6 +64,11 @@ if (!empty($_POST)) {
         </form>
     </div>
 
+    <div class="container w-25 mt-2 mx-auto">
+        <a class="btn btn-outline-secondary" href="signup.php" role="button">Maak een account</a>
+
+    </div>
+
 </body>
 
 </html>
