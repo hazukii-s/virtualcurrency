@@ -184,7 +184,7 @@
                         $conn = Db::getConnection();
 
                         //laat zien waar receiverid = session['user_id']
-                        $statement = $conn->prepare("SELECT users.firstname, users.lastname, transfers.tokens, transfers.description
+                        $statement = $conn->prepare("SELECT transfers.id, users.firstname, users.lastname, transfers.tokens, transfers.description
                          FROM transfers 
                          JOIN users ON transfers.senderid = users.id
                          WHERE receiverid = :receiverid");
@@ -213,7 +213,7 @@
                         // laat zien waar senderid = session['user_id']
                         $conn = Db::getConnection();
 
-                        $statement2 = $conn->prepare("SELECT users.firstname, users.lastname, transfers.tokens, transfers.description
+                        $statement2 = $conn->prepare("SELECT transfers.id, users.firstname, users.lastname, transfers.tokens, transfers.description
                         FROM transfers 
                         JOIN users ON transfers.receiverid = users.id
                         WHERE senderid = :senderid");
@@ -227,5 +227,12 @@
                         $result2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
 
                         return $result2;
+                }
+
+                public static function showTransferDetail(){
+                        //set connection
+                        //check of $_GET['id'] bestaat
+                        // als het bestaat -> stmt prepare om naam, tokens en bericht te krijgen
+                        //stmt execute
                 }
         }
