@@ -40,7 +40,11 @@ $transferDetail = Transfer::showTransferDetail();
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Tokens:</h5>
-                    <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
+                    <?php if ($transferDetail['tokens'] > 1) : ?>
+                        <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
+                    <?php else : ?>
+                        <p class="card-text"> <?php echo $transferDetail['tokens']; ?> token</p>
+                    <?php endif; ?>
                 </div>
             </div>
 
