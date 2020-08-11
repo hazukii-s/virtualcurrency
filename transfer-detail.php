@@ -33,7 +33,7 @@ $transferDetail = Transfer::showTransferDetail();
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Van wie:</h5>
-                    <p class="card-text"> <?php echo $transferDetail['firstname']; ?></p>
+                    <p class="card-text"> <?php echo $transferDetail['firstname'];  echo " "; echo $transferDetail['lastname']?></p>
                 </div>
             </div>
 
