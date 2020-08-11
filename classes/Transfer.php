@@ -145,8 +145,8 @@
                         $stmt->bindValue(':firstname', $firstname);
                         $stmt->execute();
                         $receiverid = $stmt->fetch(PDO::FETCH_ASSOC);
-                        var_dump($stmt);
-                        var_dump($receiverid);
+                        //var_dump($stmt);
+                        //var_dump($receiverid);
 
                         $statement1 = $conn->prepare("UPDATE users SET tokens = tokens + :tokens WHERE firstname = :firstname");
                         $statement2 = $conn->prepare("INSERT INTO transfers (senderid, receiverid, tokens, description) values(:senderid, :receiverid, :tokens, :description)");
@@ -167,7 +167,7 @@
                         $statement3->bindValue(':tokens', $tokens);
                         $statement3->bindValue(':senderid', $senderid);
 
-                        var_dump($statement1);
+                        //var_dump($statement1);
 
 
                         $result = $statement1->execute();
@@ -252,7 +252,7 @@
                                 $statement->execute();
 
                                 $result = $statement->fetch(PDO::FETCH_ASSOC);
-                                var_dump($result);
+                                //var_dump($result);
 
                                 return $result;
                         }

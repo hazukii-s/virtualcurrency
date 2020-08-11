@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
 
 $tokens = new Transfer();
 $tokens->setId($_SESSION['user_id']);
-echo $_SESSION['user_id'];
+//echo $_SESSION['user_id'];
 $availableTokens = $tokens->getAvailableTokens();
 $incomingTransfers = Transfer::getIncomingTransfers();
 $outgoingTransfers = Transfer::getOutgoingTransfers();
