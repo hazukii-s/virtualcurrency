@@ -56,18 +56,18 @@ $outgoingTransfers = Transfer::getOutgoingTransfers();
 
                 <?php foreach ($incomingTransfers as $transfer) : ?>
                     <?php if($transfer['tokens'] > 1) : ?>
-                    <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> tokens. <br> Reden: "<?php echo $transfer['description'];  ?>"</a>
+                    <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> tokens.</a>
                     <?php else : ?>
-                        <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token. <br> Reden: "<?php echo $transfer['description'];  ?>"</a>
+                        <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token.</a>
 
                     <?php endif; ?>
                 <?php endforeach; ?>
 
                 <?php foreach ($outgoingTransfers as $transfer) : ?>
                     <?php if ($transfer['tokens'] > 1) :  ?>
-                        <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> Je stuurde <?php echo $transfer['tokens']; ?> tokens naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</a>
+                        <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> Je stuurde <?php echo $transfer['tokens']; ?> tokens naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>.</a>
                     <?php else :  ?>
-                        <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</a>
+                        <a href="transfer-detail.php?id=<?php echo $transfer['id'] ?>" class="list-group-item list-group-item-action"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>.</a>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </ul>

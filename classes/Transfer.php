@@ -184,7 +184,7 @@
                         $conn = Db::getConnection();
 
                         //laat zien waar receiverid = session['user_id']
-                        $statement = $conn->prepare("SELECT transfers.id, users.firstname, users.lastname, transfers.tokens, transfers.description
+                        $statement = $conn->prepare("SELECT transfers.id, users.firstname, users.lastname, transfers.tokens
                          FROM transfers 
                          JOIN users ON transfers.senderid = users.id
                          WHERE receiverid = :receiverid");
@@ -214,7 +214,7 @@
                         // laat zien waar senderid = session['user_id']
                         $conn = Db::getConnection();
 
-                        $statement2 = $conn->prepare("SELECT transfers.id, users.firstname, users.lastname, transfers.tokens, transfers.description
+                        $statement2 = $conn->prepare("SELECT transfers.id, users.firstname, users.lastname, transfers.tokens
                         FROM transfers 
                         JOIN users ON transfers.receiverid = users.id
                         WHERE senderid = :senderid");
