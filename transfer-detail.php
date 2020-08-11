@@ -6,9 +6,10 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 
-echo $id;
+//echo $id;
 
-$transferDetail = Transfer::getIncomingTransfers($id);
+$transferDetail = Transfer::showTransferDetail();
+//var_dump($transferDetail);
 
 ?>
 
@@ -32,21 +33,21 @@ $transferDetail = Transfer::getIncomingTransfers($id);
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Van wie:</h5>
-                    <p class="card-text"> <?php echo $transferDetail[$id]['firstname']; ?></p>
+                    <p class="card-text"> <?php echo $transferDetail['firstname']; ?></p>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Tokens:</h5>
-                    <p class="card-text"> <?php echo $transferDetail[$id]['tokens']; ?> tokens</p>
+                    <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Bericht</h5>
-                    <p class="card-text"> <?php echo $transferDetail[$id]['description']; ?></p>
+                    <p class="card-text"> <?php echo $transferDetail['description']; ?></p>
                 </div>
             </div>
 
