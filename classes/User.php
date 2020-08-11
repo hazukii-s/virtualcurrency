@@ -163,8 +163,8 @@ class User
             //user gevonden -> wachtwoord checken
             //echo "user found";
             $passwordCheck = password_verify($passwordLogin, $user['password'] );
-            var_dump($user['password']);
-            var_dump($passwordCheck);
+            //var_dump($user['password']);
+            //var_dump($passwordCheck);
 
             if($passwordCheck){
                 //stel login session vast 
