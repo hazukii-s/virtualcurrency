@@ -1,9 +1,13 @@
 <?php
 include_once(__DIR__ . "/classes/Transfer.php");
+session_start();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
+
+echo $id;
+
 
 ?>
 
@@ -23,26 +27,29 @@ if (isset($_GET['id'])) {
         <div class="container w-50 mt-5">
             <a class="btn btn-outline-secondary float-right" href="index.php" role="button">Terug</a>
             <h3 class=" mb-5 ">Transfer details.</h3>
+
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Van wie:</h5>
-                    <p class="card-text"> <?php echo $transfers[$id]['firstname']; ?></p>
+                    <p class="card-text"> <?php echo $transfer[$id]['firstname']; ?></p>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Tokens:</h5>
-                    <p class="card-text"> <?php echo $transfers[$id]['tokens']; ?> tokens</p>
+                    <p class="card-text"> <?php echo $transfer[$id]['tokens']; ?> tokens</p>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Bericht</h5>
-                    <p class="card-text"> <?php echo $transfers[$id]['description']; ?></p>
+                    <p class="card-text"> <?php echo $transfer[$id]['description']; ?></p>
                 </div>
             </div>
+
+
         </div>
 
 </body>
