@@ -55,15 +55,20 @@ $outgoingTransfers = Transfer::getOutgoingTransfers();
                 <h5>Transfers</h5>
 
                 <?php foreach ($incomingTransfers as $transfer) : ?>
+                    <?php if($transfer['tokens'] > 1) : ?>
+                    <li class="list-group-item"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> tokens. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
+                    <?php else : ?>
+                        <li class="list-group-item"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
 
-                    <li class="list-group-item"> <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?> stuurde je <?php echo $transfer['tokens']; ?> token. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
-
+                    <?php endif; ?>
                 <?php endforeach; ?>
 
                 <?php foreach ($outgoingTransfers as $transfer) : ?>
-
-                    <li class="list-group-item"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
-
+                    <?php if ($transfer['tokens'] > 1) :  ?>
+                        <li class="list-group-item"> Je stuurde <?php echo $transfer['tokens']; ?> tokens naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
+                    <?php else :  ?>
+                        <li class="list-group-item"> Je stuurde <?php echo $transfer['tokens']; ?> token naar <?php echo $transfer['firstname']; ?> <?php echo $transfer['lastname']; ?>. <br> Reden: "<?php echo $transfer['description'];  ?>"</li>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
         </div>
