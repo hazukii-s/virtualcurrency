@@ -208,8 +208,9 @@
                         //if receiver id '[firstname] heeft [tokens] gestuurd naar jou'
                 }
 
-                public static function getOutgoingTransfers(){
-                        
+                public static function getOutgoingTransfers()
+                {
+
                         // laat zien waar senderid = session['user_id']
                         $conn = Db::getConnection();
 
@@ -229,10 +230,31 @@
                         return $result2;
                 }
 
-                public static function showTransferDetail(){
+                public static function showTransferDetail()
+                {
                         //set connection
+                        $conn = Db::getConnection();
+
                         //check of $_GET['id'] bestaat
+                        $transferId = $_GET['id'];
+                        echo $transferId;
+
                         // als het bestaat -> stmt prepare om naam, tokens en bericht te krijgen
-                        //stmt execute
+                        if (isset($transferId)) {
+                                $statement = $conn->prepare("SELECT users.firstname, users.lastname, transfers.tokens, transfers.description
+                                FROM transfers 
+                                JOIN users ON transfers.senderid = users.id
+                                WHERE transfers.id = :id");
+
+                                $statement->bindValue(':id', $transferId);
+
+                                //stmt execute
+                                $statement->execute();
+
+                                $result = $statement->fetch(PDO::FETCH_ASSOC);
+                                var_dump($result);
+
+                                return $result;
+                        }
                 }
         }
