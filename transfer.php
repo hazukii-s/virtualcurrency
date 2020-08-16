@@ -91,12 +91,5 @@ $tokens = Transfer::getAvailableTokens();
     </div>
 </body>
 
-<script>
-    $(document).ready(function(){
-        $("#searchUser").autocomplete({
-            source: 'userSuggestion.php'
-        });
-    });
-</script>
 
 </html>
