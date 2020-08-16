@@ -170,12 +170,15 @@
                         //var_dump($statement1);
 
 
-                        $result = $statement1->execute();
-                        $result2 = $statement2->execute();
-                        $result3 = $statement3->execute();
+                        $statement1->execute();
+                        $result = $statement1->fetch(PDO::FETCH_ASSOC);
 
-
-                        return $result3;
+                        if ($result === false) {
+                                throw new Exception("Deze gebruiker bestaat niet.");
+                        } else {
+                                $result2 = $statement2->execute();
+                                $result3 = $statement3->execute();
+                        }
                 }
 
                 public static function getIncomingTransfers()
