@@ -171,9 +171,8 @@
 
 
                         $statement1->execute();
-                        $result = $statement1->fetch(PDO::FETCH_ASSOC);
 
-                        if ($result === false) {
+                        if ($statement1 === false) {
                                 throw new Exception("Deze gebruiker bestaat niet.");
                         } else {
                                 $result2 = $statement2->execute();
