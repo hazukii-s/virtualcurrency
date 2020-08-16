@@ -57,7 +57,7 @@ $tokens = Transfer::getAvailableTokens();
     </div>
 
     <div class="container w-50 mt-5">
-        <a class="btn btn-outline-secondary mb-4" href="../virtualcurrency/index.php" role="button">Terug</a>
+        <a class="btn btn-outline-secondary mb-4" href="index.php" role="button">Terug</a>
 
         <h3>Maak een transfer</h3>
         <form method="POST">

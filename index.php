@@ -40,7 +40,7 @@ $outgoingTransfers = Transfer::getOutgoingTransfers();
 <body>
     <div class="container mx-auto" id="saldo">
         <div class="container w-50 mt-5">
-            <a class="btn btn-outline-secondary float-right" href="../virtualcurrency/logout.php" role="button">Uitloggen</a>
+            <a class="btn btn-outline-secondary float-right" href="logout.php" role="button">Uitloggen</a>
             <h3 class=" mb-5 ">Welkom, <?php echo htmlspecialchars($_SESSION['firstname']); ?>.</h3>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -73,7 +73,7 @@ $outgoingTransfers = Transfer::getOutgoingTransfers();
             </ul>
         </div>
         <div class="container w-50 mt-3">
-            <a class="btn btn-primary" href="../virtualcurrency/transfer.php" role="button">Maak transfer</a>
+            <a class="btn btn-primary" href="transfer.php" role="button">Maak transfer</a>
         </div>
     </div>
 </body>
