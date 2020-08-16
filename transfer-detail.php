@@ -33,11 +33,11 @@ $transferDetail = Transfer::showTransferDetail();
             <?php if ($_SESSION['firstname'] == $transferDetail['senderFN']) : ?>
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">U stuurde</h5>
+                        <h5 class="card-title">Je stuurde</h5>
                         <?php if ($transferDetail['tokens'] > 1) : ?>
-                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
+                            <p class="card-text"> <?php echo htmlspecialchars($transferDetail['tokens']); ?> tokens</p>
                         <?php else : ?>
-                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> token</p>
+                            <p class="card-text"> <?php echo htmlspecialchars($transferDetail['tokens']); ?> token</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -45,9 +45,9 @@ $transferDetail = Transfer::showTransferDetail();
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Naar</h5>
-                        <p class="card-text"> <?php echo $transferDetail['receiverFN'];
+                        <p class="card-text"> <?php echo htmlspecialchars($transferDetail['receiverFN']);
                                                 echo " ";
-                                                echo $transferDetail['receiverLN'] ?></p>
+                                                echo htmlspecialchars($transferDetail['receiverLN']); ?></p>
 
                     </div>
                 </div>
@@ -55,18 +55,18 @@ $transferDetail = Transfer::showTransferDetail();
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Bericht</h5>
-                        <p class="card-text"> <?php echo $transferDetail['description']; ?></p>
+                        <p class="card-text"> <?php echo htmlspecialchars($transferDetail['description']); ?></p>
                     </div>
                 </div>
 
-                <?php else : ?>
+            <?php else : ?>
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">U kreeg</h5>
+                        <h5 class="card-title">Je kreeg</h5>
                         <?php if ($transferDetail['tokens'] > 1) : ?>
-                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> tokens</p>
+                            <p class="card-text"> <?php echo htmlspecialchars($transferDetail['tokens']); ?> tokens</p>
                         <?php else : ?>
-                            <p class="card-text"> <?php echo $transferDetail['tokens']; ?> token</p>
+                            <p class="card-text"> <?php echo htmlspecialchars($transferDetail['tokens']); ?> token</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -74,9 +74,9 @@ $transferDetail = Transfer::showTransferDetail();
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Van</h5>
-                        <p class="card-text"> <?php echo $transferDetail['senderFN'];
+                        <p class="card-text"> <?php echo htmlspecialchars($transferDetail['senderFN']);
                                                 echo " ";
-                                                echo $transferDetail['senderLN'] ?></p>
+                                                echo htmlspecialchars($transferDetail['senderLN']); ?></p>
 
                     </div>
                 </div>
@@ -84,7 +84,7 @@ $transferDetail = Transfer::showTransferDetail();
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Bericht</h5>
-                        <p class="card-text"> <?php echo $transferDetail['description']; ?></p>
+                        <p class="card-text"> <?php echo htmlspecialchars($transferDetail['description']); ?></p>
                     </div>
                 </div>
             <?php endif; ?>
